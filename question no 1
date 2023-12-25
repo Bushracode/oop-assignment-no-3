@@ -1,0 +1,51 @@
+#include <iostream>
+
+using namespace std;
+
+// Abstract base class
+class Shape {
+public:
+    virtual double area() const = 0; // Pure virtual function
+    virtual ~Shape() {} // Virtual destructor for polymorphic behavior
+};
+
+// Concrete derived classes
+class Circle : public Shape {
+private:
+    double radius;
+
+public:
+    Circle(double r) : radius(r) {}
+
+    double area() const override {
+        return 3.14159 * radius * radius;
+    }
+};
+
+class Rectangle : public Shape {
+private:
+    double length;
+    double width;
+
+public:
+    Rectangle(double l, double w) : length(l), width(w) {}
+
+    double area() const override {
+        return length * width;
+    }
+};
+
+// Usage
+int main() {
+    Circle c(5);
+    Rectangle r(4, 6);
+
+    Shape* shape1 = &c;
+    Shape* shape2 = &r;
+
+    // Calculate and output areas
+    cout << "Circle Area: " << shape1->area() << endl;
+    cout << "Rectangle Area: " << shape2->area() << endl;
+
+    return 0;
+}
